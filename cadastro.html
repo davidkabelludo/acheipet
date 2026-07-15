@@ -51,6 +51,8 @@ button{
 
 <input id="nome" placeholder="Nome do pet">
 
+<input id="raca" placeholder="Raça">
+
 <input id="responsavel" placeholder="Responsável">
 
 <input id="telefone" placeholder="WhatsApp">
@@ -84,9 +86,13 @@ const banco = window.supabase.createClient(
 
 async function cadastrar(){
 
-let dados = {
+const {error} = await banco
+.from("pets")
+.insert([{
 
 Nome_pet: document.getElementById("nome").value,
+
+Raca: document.getElementById("raca").value,
 
 Responsavel: document.getElementById("responsavel").value,
 
@@ -100,37 +106,25 @@ Tratamentos: document.getElementById("tratamento").value,
 
 Mensagem: document.getElementById("mensagem").value,
 
-Foto: "",
+Foto: ""
 
-tags: ""
-
-};
-
-
-const {data, error} = await banco
-.from("pets")
-.insert([dados]);
+}]);
 
 
 if(error){
 
 alert("Erro ao salvar: " + error.message);
 
-console.log(error);
-
 return;
 
 }
 
 
-alert("🐾 Pet cadastrado com sucesso!");
-
+alert("🐾 Cadastro salvo com sucesso!");
 
 }
 
-
 </script>
-
 
 </body>
 </html>
