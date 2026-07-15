@@ -1,63 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cadastro Achopet</title>
 
 <style>
+
 body {
   font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  padding: 20px;
+  background:#f2f2f2;
+  padding:20px;
 }
 
 .card {
-  max-width: 420px;
-  margin: auto;
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
+  max-width:420px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:15px;
 }
 
 h1 {
-  text-align: center;
-  color: #333;
+  text-align:center;
+  color:#333;
 }
 
 input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+box-sizing:border-box;
+
 }
 
 textarea {
-  height: 80px;
+height:80px;
 }
 
+
 button {
-  width: 100%;
-  margin-top: 15px;
-  padding: 14px;
-  background: #25D366;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
+
+width:100%;
+margin-top:15px;
+padding:14px;
+background:#25D366;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+
 }
+
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="card">
 
+
 <h1>🐾 Cadastro Achopet</h1>
+
 
 <input id="nome_pet" placeholder="Nome do pet">
 
@@ -69,7 +81,7 @@ button {
 
 <input id="whatsapp" placeholder="WhatsApp">
 
-<input id="tipo_sanguineo" placeholder="Tipo sanguíneo (opcional)">
+<input id="tipo_sanguineo" placeholder="Tipo sanguíneo">
 
 <textarea id="alergias" placeholder="Alergias"></textarea>
 
@@ -79,18 +91,27 @@ button {
 
 <textarea id="mensagem" placeholder="Mensagem para quem encontrar"></textarea>
 
-<button onclick="alert('Botão funcionando')">Salvar cadastro</button>
+
+<button onclick="salvarPet()">
+Salvar cadastro
+</button>
+
 
 </div>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
+
 const supabaseUrl = "https://kadigolmlkhhwwhlyqpd.supabase.co";
 
+
 const supabaseKey = "sb_publishable_pAUPbkDPg0EX45fjHGMAgQ_erEKCPXN";
+
 
 const supabase = window.supabase.createClient(
 supabaseUrl,
@@ -98,42 +119,98 @@ supabaseKey
 );
 
 
+
 async function salvarPet(){
+
 
 const pet = {
 
-nome_pet: document.getElementById("nome_pet").value,
-especie: document.getElementById("especie").value,
-raca: document.getElementById("raca").value,
-responsavel: document.getElementById("responsavel").value,
-whatsapp: document.getElementById("whatsapp").value,
-tipo_sanguineo: document.getElementById("tipo_sanguineo").value,
-alergias: document.getElementById("alergias").value,
-tratamentos: document.getElementById("tratamentos").value,
-observacoes: document.getElementById("observacoes").value,
-mensagem: document.getElementById("mensagem").value
+
+nome_pet:
+document.getElementById("nome_pet").value,
+
+
+especie:
+document.getElementById("especie").value,
+
+
+raca:
+document.getElementById("raca").value,
+
+
+responsavel:
+document.getElementById("responsavel").value,
+
+
+whatsapp:
+document.getElementById("whatsapp").value,
+
+
+tipo_sanguineo:
+document.getElementById("tipo_sanguineo").value,
+
+
+alergias:
+document.getElementById("alergias").value,
+
+
+tratamentos:
+document.getElementById("tratamentos").value,
+
+
+observacoes:
+document.getElementById("observacoes").value,
+
+
+mensagem:
+document.getElementById("mensagem").value
+
 
 };
 
 
-const { data, error } = await supabase
+
+console.log(pet);
+
+
+
+const {data,error} = await supabase
+
 .from("pets")
+
 .insert([pet]);
+
 
 
 if(error){
 
-alert("Erro: " + error.message);
+alert("Erro ao salvar: " + error.message);
+
+console.log(error);
+
 
 }else{
 
-alert("Pet cadastrado com sucesso!");
+
+alert("🐾 Pet cadastrado com sucesso!");
+
+console.log(data);
+
 
 }
 
+
 }
+
 
 </script>
 
+
 </body>
+
 </html>
+
+ 
+
+
+
