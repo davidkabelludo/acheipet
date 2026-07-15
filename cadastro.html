@@ -1,19 +1,124 @@
-<input placeholder="Nome do pet">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<input placeholder="Raça">
+<title>Cadastro Achopet</title>
 
-<input placeholder="Nome do responsável">
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#f2f5f7;
+margin:0;
+padding:20px;
+}
 
-<input placeholder="WhatsApp">
+.container{
+max-width:420px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 20px #ccc;
+}
 
-<input placeholder="Tipo sanguíneo (opcional)">
+.logo{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+color:#333;
+}
 
-<textarea placeholder="Alergias (ex: medicamentos, alimentos, picadas)"></textarea>
+.sub{
+text-align:center;
+color:#777;
+margin-bottom:20px;
+}
 
-<textarea placeholder="Tratamentos ou medicamentos em uso"></textarea>
+label{
+font-weight:bold;
+font-size:14px;
+}
 
-<textarea placeholder="Mensagem para quem encontrar"></textarea>
+input, textarea{
+width:100%;
+padding:14px;
+margin:8px 0 15px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:15px;
+box-sizing:border-box;
+}
 
-<textarea placeholder="Observações especiais"></textarea>
+textarea{
+height:80px;
+resize:none;
+}
+
+button{
+width:100%;
+padding:15px;
+border:0;
+border-radius:12px;
+background:#222;
+color:white;
+font-size:16px;
+font-weight:bold;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.info{
+font-size:12px;
+color:#777;
+text-align:center;
+margin-top:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">🐾 Achopet</div>
+<div class="sub">Cadastro inteligente do seu pet</div>
+
+<label>Nome do pet</label>
+<input placeholder="Ex: Didi">
+
+<label>Raça</label>
+<input placeholder="Ex: Pastor Alemão">
+
+<label>Responsável</label>
+<input placeholder="Nome do tutor">
+
+<label>WhatsApp</label>
+<input placeholder="(00) 00000-0000">
+
+<label>Tipo sanguíneo (opcional)</label>
+<input placeholder="Ex: DEA 1.1">
+
+<label>Alergias</label>
+<textarea placeholder="Informe alergias ou restrições"></textarea>
+
+<label>Tratamentos</label>
+<textarea placeholder="Medicamentos ou cuidados especiais"></textarea>
+
+<label>Mensagem para quem encontrar</label>
+<textarea placeholder="Mensagem de ajuda"></textarea>
 
 <button>Salvar cadastro</button>
+
+<div class="info">
+Tecnologia NFC para identificação do seu pet
+</div>
+
+</div>
+
+</body>
+</html>
