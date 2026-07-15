@@ -112,7 +112,7 @@ margin-top:15px;
 <label>Mensagem para quem encontrar</label>
 <textarea placeholder="Mensagem de ajuda"></textarea>
 
-<button>Salvar cadastro</button>
+<button onclick="salvarPet()">Salvar cadastro</button>
 
 <div class="info">
 Tecnologia NFC para identificação do seu pet
@@ -120,6 +120,34 @@ Tecnologia NFC para identificação do seu pet
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+async function salvarPet() {
+
+const pet = {
+  nome_pet: document.getElementById("nome_pet")?.value || "",
+  especie: document.getElementById("especie")?.value || "",
+  raca: document.getElementById("raca")?.value || "",
+  responsavel: document.getElementById("responsavel")?.value || "",
+  whatsapp: document.getElementById("whatsapp")?.value || "",
+  tipo_sanguineo: document.getElementById("tipo_sanguineo")?.value || "",
+  alergias: document.getElementById("alergias")?.value || "",
+  tratamentos: document.getElementById("tratamentos")?.value || "",
+  observacoes: document.getElementById("observacoes")?.value || "",
+  mensagem: document.getElementById("mensagem")?.value || ""
+};
+
+const { data, error } = await supabase
+.from("pets")
+.insert([pet]);
+
+if (error) {
+  alert("Erro ao salvar: " + error.message);
+} else {
+  alert("Pet cadastrado com sucesso!");
+}
+
+}
+</script>
 </body>
 </html><script>
 const supabaseUrl = "https://kadigolmlkhhwwhlyqpd.supabase.co";
