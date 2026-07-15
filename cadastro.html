@@ -7,75 +7,47 @@
 <title>Cadastro Achopet</title>
 
 <style>
-body{
-font-family: Arial, sans-serif;
-background:#f2f5f7;
-margin:0;
-padding:20px;
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  padding: 20px;
 }
 
-.container{
-max-width:420px;
-margin:auto;
-background:white;
-padding:25px;
-border-radius:20px;
-box-shadow:0 5px 20px #ccc;
+.card {
+  max-width: 420px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
 }
 
-.logo{
-text-align:center;
-font-size:28px;
-font-weight:bold;
-color:#333;
+h1 {
+  text-align: center;
+  color: #333;
 }
 
-.sub{
-text-align:center;
-color:#777;
-margin-bottom:20px;
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-label{
-font-weight:bold;
-font-size:14px;
+textarea {
+  height: 80px;
 }
 
-input, textarea{
-width:100%;
-padding:14px;
-margin:8px 0 15px;
-border:1px solid #ddd;
-border-radius:12px;
-font-size:15px;
-box-sizing:border-box;
-}
-
-textarea{
-height:80px;
-resize:none;
-}
-
-button{
-width:100%;
-padding:15px;
-border:0;
-border-radius:12px;
-background:#222;
-color:white;
-font-size:16px;
-font-weight:bold;
-}
-
-button:hover{
-opacity:.9;
-}
-
-.info{
-font-size:12px;
-color:#777;
-text-align:center;
-margin-top:15px;
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
 }
 </style>
 
@@ -83,74 +55,85 @@ margin-top:15px;
 
 <body>
 
-<div class="container">
+<div class="card">
 
-<div class="logo">🐾 Achopet</div>
-<div class="sub">Cadastro inteligente do seu pet</div>
+<h1>🐾 Cadastro Achopet</h1>
 
-<label>Nome do pet</label>
-<input placeholder="Ex: Didi">
+<input id="nome_pet" placeholder="Nome do pet">
 
-<label>Raça</label>
-<input placeholder="Ex: Pastor Alemão">
+<input id="especie" placeholder="Espécie">
 
-<label>Responsável</label>
-<input placeholder="Nome do tutor">
+<input id="raca" placeholder="Raça">
 
-<label>WhatsApp</label>
-<input placeholder="(00) 00000-0000">
+<input id="responsavel" placeholder="Nome do responsável">
 
-<label>Tipo sanguíneo (opcional)</label>
-<input placeholder="Ex: DEA 1.1">
+<input id="whatsapp" placeholder="WhatsApp">
 
-<label>Alergias</label>
-<textarea placeholder="Informe alergias ou restrições"></textarea>
+<input id="tipo_sanguineo" placeholder="Tipo sanguíneo (opcional)">
 
-<label>Tratamentos</label>
-<textarea placeholder="Medicamentos ou cuidados especiais"></textarea>
+<textarea id="alergias" placeholder="Alergias"></textarea>
 
-<label>Mensagem para quem encontrar</label>
-<textarea placeholder="Mensagem de ajuda"></textarea>
+<textarea id="tratamentos" placeholder="Tratamentos ou medicamentos"></textarea>
+
+<textarea id="observacoes" placeholder="Observações"></textarea>
+
+<textarea id="mensagem" placeholder="Mensagem para quem encontrar"></textarea>
 
 <button onclick="salvarPet()">Salvar cadastro</button>
 
-<div class="info">
-Tecnologia NFC para identificação do seu pet
 </div>
 
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-async function salvarPet() {
+
+const supabaseUrl = "https://kadigolmlkhhwwhlyqpd.supabase.co";
+
+const supabaseKey = "sb_publishable_pAUPbkDPg0EX45fjHGMAgQ_erEKCPXN";
+
+const supabase = window.supabase.createClient(
+supabaseUrl,
+supabaseKey
+);
+
+
+async function salvarPet(){
 
 const pet = {
-  nome_pet: document.getElementById("nome_pet")?.value || "",
-  especie: document.getElementById("especie")?.value || "",
-  raca: document.getElementById("raca")?.value || "",
-  responsavel: document.getElementById("responsavel")?.value || "",
-  whatsapp: document.getElementById("whatsapp")?.value || "",
-  tipo_sanguineo: document.getElementById("tipo_sanguineo")?.value || "",
-  alergias: document.getElementById("alergias")?.value || "",
-  tratamentos: document.getElementById("tratamentos")?.value || "",
-  observacoes: document.getElementById("observacoes")?.value || "",
-  mensagem: document.getElementById("mensagem")?.value || ""
+
+nome_pet: document.getElementById("nome_pet").value,
+especie: document.getElementById("especie").value,
+raca: document.getElementById("raca").value,
+responsavel: document.getElementById("responsavel").value,
+whatsapp: document.getElementById("whatsapp").value,
+tipo_sanguineo: document.getElementById("tipo_sanguineo").value,
+alergias: document.getElementById("alergias").value,
+tratamentos: document.getElementById("tratamentos").value,
+observacoes: document.getElementById("observacoes").value,
+mensagem: document.getElementById("mensagem").value
+
 };
+
 
 const { data, error } = await supabase
 .from("pets")
 .insert([pet]);
 
-if (error) {
-  alert("Erro ao salvar: " + error.message);
-} else {
-  alert("Pet cadastrado com sucesso!");
+
+if(error){
+
+alert("Erro: " + error.message);
+
+}else{
+
+alert("Pet cadastrado com sucesso!");
+
 }
 
 }
+
 </script>
+
 </body>
-</html><script>
-const supabaseUrl = "https://kadigolmlkhhwwhlyqpd.supabase.co";
-const supabaseKey = "SUA_PUBLISHABLE_KEY";
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-</script>
+</html>
